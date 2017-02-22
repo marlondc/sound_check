@@ -51,6 +51,8 @@ function stopListening() {
   soundMeter.stop();
   noiseCounterValue = 0;
   noiseCounter.innerText = noiseCounterValue;
+  soundMeter.instant = 0.00
+  instantMeter.value = instantValueDisplay.innerText = soundMeter.instant.toFixed(2);
 }
 
 function startListening() {
