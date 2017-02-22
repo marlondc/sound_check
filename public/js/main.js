@@ -33,13 +33,13 @@ function useMic(mic) {
       return;
     }
     setInterval(function() {
-      if (mic.instant.toFixed(2) > 0.50) {
+      if (mic.instant.toFixed(2) > 0.45) {
         noiseCounterValue += 1;
       }
       instantMeter.value = instantValueDisplay.innerText =
           mic.instant.toFixed(2);
       noiseCounter.innerText = noiseCounterValue;
-    }, 200);
+    }, 300);
   });
 }
 
