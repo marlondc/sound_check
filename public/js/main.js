@@ -49,6 +49,8 @@ function handleError(error) {
 
 function stopListening() {
   soundMeter.stop();
+  noiseCounterValue = 0;
+  noiseCounter.innerText = noiseCounterValue;
 }
 
 function startListening() {
