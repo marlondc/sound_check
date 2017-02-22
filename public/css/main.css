@@ -28,3 +28,9 @@ color: #f4b400;
 meter#instant {
 color: #0f9d58;
 }
+
+#myCanvas {
+  width: 600px;
+  height: 300px;
+  background: #BBB;
+}

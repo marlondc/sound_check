@@ -1,9 +1,9 @@
 'use strict';
 
 var instantMeter = document.querySelector('#instant meter');
-var noiseCounter = document.querySelector('#noise_counter');
-var noiseCounterValue = 0
 var instantValueDisplay = document.querySelector('#instant .value');
+var canvas = document.querySelector('#myCanvas');
+var ctx = canvas.getContext("2d");
 
 try {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -33,13 +33,11 @@ function useMic(mic) {
       return;
     }
     setInterval(function() {
-      if (mic.instant.toFixed(2) > 0.45) {
-        noiseCounterValue += 1;
-      }
       instantMeter.value = instantValueDisplay.innerText =
           mic.instant.toFixed(2);
-      noiseCounter.innerText = noiseCounterValue;
-    }, 300);
+      var size = mic.instant.toFixed(2) * 70
+      drawCircle(size);
+    }, 400);
   });
 }
 
@@ -49,8 +47,6 @@ function handleError(error) {
 
 function stopListening() {
   soundMeter.stop();
-  noiseCounterValue = 0;
-  noiseCounter.innerText = noiseCounterValue;
   soundMeter.instant = 0.00
   instantMeter.value = instantValueDisplay.innerText = soundMeter.instant.toFixed(2);
 }
@@ -61,3 +57,14 @@ function startListening() {
 
 navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
+
+function drawCircle(size) {
+  clear(ctx);
+  ctx.beginPath();
+  ctx.arc(100,75,size,0,2*Math.PI);
+  ctx.stroke();
+}
+
+function clear(c) {
+    c.clearRect(0, 0, 600, 300);
+}
