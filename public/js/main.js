@@ -1,12 +1,9 @@
 'use strict';
 
 var instantMeter = document.querySelector('#instant meter');
-var slowMeter = document.querySelector('#slow meter');
-var clipMeter = document.querySelector('#clip meter');
-
+var noiseCounter = document.querySelector('#noise_counter');
+var noiseCounterValue = 0
 var instantValueDisplay = document.querySelector('#instant .value');
-var slowValueDisplay = document.querySelector('#slow .value');
-var clipValueDisplay = document.querySelector('#clip .value');
 
 try {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -36,12 +33,12 @@ function useMic(mic) {
       return;
     }
     setInterval(function() {
+      if (mic.instant.toFixed(2) > 0.50) {
+        noiseCounterValue += 1;
+      }
       instantMeter.value = instantValueDisplay.innerText =
           mic.instant.toFixed(2);
-      slowMeter.value = slowValueDisplay.innerText =
-          mic.slow.toFixed(2);
-      clipMeter.value = clipValueDisplay.innerText =
-          mic.clip;
+      noiseCounter.innerText = noiseCounterValue;
     }, 200);
   });
 }
