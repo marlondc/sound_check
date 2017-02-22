@@ -26,24 +26,36 @@ function handleSuccess(stream) {
   // browser console.
   window.stream = stream;
   var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
-  soundMeter.connectToSource(stream, function(e) {
+  useMic(soundMeter);
+}
+
+function useMic(mic) {
+  mic.connectToSource(stream, function(e) {
     if (e) {
       alert(e);
       return;
     }
     setInterval(function() {
       instantMeter.value = instantValueDisplay.innerText =
-          soundMeter.instant.toFixed(2);
+          mic.instant.toFixed(2);
       slowMeter.value = slowValueDisplay.innerText =
-          soundMeter.slow.toFixed(2);
+          mic.slow.toFixed(2);
       clipMeter.value = clipValueDisplay.innerText =
-          soundMeter.clip;
+          mic.clip;
     }, 200);
   });
 }
 
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
+}
+
+function stopListening() {
+  soundMeter.stop();
+}
+
+function startListening() {
+  useMic(soundMeter);
 }
 
 navigator.mediaDevices.getUserMedia(constraints).
