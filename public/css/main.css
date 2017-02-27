@@ -38,8 +38,7 @@ color: #0f9d58;
 #myCanvas {
   width: 600px;
   height: 300px;
-  color: #ff7458;
   position: absolute;
-  left: 370px;
-  bottom: 315px;
+  left: 390px;
+  bottom: 530px;
 }
