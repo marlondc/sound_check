@@ -130,9 +130,6 @@ function useMic(mic) {
 }
 
 function checkCircles(noiseLevel) {
-  console.log('=======');
-  console.log(noiseLevel);
-  console.log('=======');
 }
 
 function handleError(error) {
@@ -154,6 +151,7 @@ function showCircle(size) {
   clear(ctx);
   ctx.beginPath();
   ctx.arc(100,75,size,0,2*Math.PI);
+  ctx.strokeStyle = "#043881";
   ctx.stroke();
 }
 
