@@ -1,4 +1,4 @@
-(function() {
+(function(export) {
     var paper, circs, i, nowX, nowY, timer, props = {}, toggler = 0, elie, dx, dy, rad, cur, opa;
     // Returns a random integer between min and max
     // Using Math.round() will give you a non-uniform distribution!
@@ -68,16 +68,19 @@
         timer = setTimeout(moveIt, 60);
     }
 
+    function drawCircles(numberOfCircles) {
+      paper = Raphael("canvas", 500, 500);
+      circs = paper.set();
+      for (i = 0; i < numberOfCircles; ++i)
+      {
+          opa = ran(3,10)/10;
+          circs.push(paper.circle(ran(0,500), ran(0,500), ran(10,30)).attr({"fill-opacity": opa,
+                                                                         "stroke-opacity": opa}));
+      }
+      circs.attr({fill: "#00DDAA", stroke: "#00DDAA"});
+      moveIt();
+    }
+
     window.onload = function () {
-        paper = Raphael("canvas", 500, 500);
-        circs = paper.set();
-        for (i = 0; i < 30; ++i)
-        {
-            opa = ran(3,10)/10;
-            circs.push(paper.circle(ran(0,500), ran(0,500), ran(10,30)).attr({"fill-opacity": opa,
-                                                                           "stroke-opacity": opa}));
-        }
-        circs.attr({fill: "#00DDAA", stroke: "#00DDAA"});
-        moveIt();
     };
 }());
