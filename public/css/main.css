@@ -19,7 +19,7 @@ body {
 .game-circles {
   position: absolute;
   left: 45%;
-  top: 20%;
+  top: 40%;
 }
 
 #computer-circle {
@@ -34,13 +34,19 @@ body {
 }
 
 .big-circle {
-
+  height: 200px;
+  width: 200px;
+  background: #ff7458;
 }
 
 .medium-circle {
-
+  height: 150px;
+  width: 150px;
+  background: #e91e38;
 }
 
 .small-circle {
-
+  height: 100px;
+  width: 100px;
+  background: #2670b3;
 }

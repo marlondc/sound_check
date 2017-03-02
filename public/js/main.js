@@ -29,7 +29,21 @@ var score = 0;
 var sound = new UserSound(0);
 
 $('#counter').text(score);
-
+switch(Math.floor(Math.random() * 4)) {
+  case 0:
+  console.log(1111);
+    $('#computer-circle').addClass('small-circle');
+    break;
+  case 1:
+  console.log(9999);
+    $('#computer-circle').addClass('medium-circle');
+    break;
+  case 2:
+  console.log(3333);
+    $('#computer-circle').addClass('big-circle');
+    break;
+  default:
+}
 
 function handleSuccess(stream) {
   // Put variables in global scope to make them available to the
