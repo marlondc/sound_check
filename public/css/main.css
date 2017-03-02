@@ -1,6 +1,5 @@
 body {
   font-family: Calibri;
-  background: :#666666;
   color: #1c1c1c;
 }
 
@@ -43,7 +42,7 @@ color: #0f9d58;
   bottom: 530px;
 }
 
-#circle{
+#user-circle{
   border-radius: 50%;
   border: 2px solid black;
   width: 0;

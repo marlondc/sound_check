@@ -1,13 +1,5 @@
 'use strict';
 
-var instantMeter = document.querySelector('#instant meter');
-var slowMeter = document.querySelector('#slow meter');
-var clipMeter = document.querySelector('#clip meter');
-
-var instantValueDisplay = document.querySelector('#instant .value');
-var slowValueDisplay = document.querySelector('#slow .value');
-var clipValueDisplay = document.querySelector('#clip .value');
-
 try {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   window.audioContext = new AudioContext();
@@ -21,6 +13,15 @@ var constraints = window.constraints = {
   video: false
 };
 
+function UserSound(initialVolume) {
+  this.averageVolume = initialVolume;
+  this.totalVolume = initialVolume;
+  this.loudestVolume = initialVolume;
+}
+
+var sound = new UserSound(0);
+
+console.log(sound);
 function handleSuccess(stream) {
   // Put variables in global scope to make them available to the
   // browser console.
@@ -36,20 +37,18 @@ function useMic(mic) {
       return;
     }
     setInterval(function() {
-      instantMeter.value = instantValueDisplay.innerText =
-          mic.instant.toFixed(2);
-      slowMeter.value = slowValueDisplay.innerText =
-          mic.slow.toFixed(2);
-      clipMeter.value = clipValueDisplay.innerText =
-          mic.clip;
-      var diameter = mic.instant.toFixed(2) * 200;
-      console.log(diameter);
+      if (mic.instant.toFixed(2) > sound.loudestVolume) {
+        sound.loudestVolume = mic.instant.toFixed(2);
+      }
+      diameter = sound.loudestVolume * 200
+      var diameter = sound.loudestVolume * 200;
       // $('#circle').css('width', diameter);
       // $('#circle').css('height', diameter);
-      $('#circle').width(diameter).height(diameter);
-    }, 1000);
+      $('#user-circle').width(diameter).height(diameter);
+    }, 100);
   });
 }
+
 
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
