@@ -3,37 +3,6 @@ body {
   color: #1c1c1c;
 }
 
-div#meters > div {
-  margin: 0 0 1em 0;
-}
-
-div#meters div.label {
-  display: inline-block;
-  font-weight: 400;
-  margin: 0 0.5em 0 0;
-  width: 3.5em;
-}
-
-div#meters div.value {
-  display: inline-block;
-}
-
-meter {
-  width: 50%;
-}
-
-meter#clip {
-  color: #db4437;
-}
-
-meter#slow {
-color: #f4b400;
-}
-
-meter#instant {
-color: #0f9d58;
-}
-
 #myCanvas {
   width: 600px;
   height: 300px;
@@ -42,7 +11,7 @@ color: #0f9d58;
   bottom: 530px;
 }
 
-.game .counter {
+.game #counter {
   padding: 20px;
   font-size: 3em;
 }
@@ -53,9 +22,25 @@ color: #0f9d58;
   top: 20%;
 }
 
+#computer-circle {
+  border-radius: 50%;
+}
+
 #user-circle{
   border-radius: 50%;
-  border: 2px solid black;
+  border: 2px solid #02496a;
   width: 0;
   height: 0;
+}
+
+.big-circle {
+
+}
+
+.medium-circle {
+
+}
+
+.small-circle {
+
 }

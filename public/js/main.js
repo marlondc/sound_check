@@ -19,9 +19,18 @@ function UserSound(initialVolume) {
   this.loudestVolume = initialVolume;
 }
 
+const circleSizes = {
+  small: {size: 100, color: '#2670b3'},
+  medium: {size: 150, color: '#e91e38'},
+  big: {size: 200, color: '#ff7458'}
+};
+
+var score = 0;
 var sound = new UserSound(0);
 
-console.log(sound);
+$('#counter').text(score);
+
+
 function handleSuccess(stream) {
   // Put variables in global scope to make them available to the
   // browser console.
