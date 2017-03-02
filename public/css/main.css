@@ -42,6 +42,17 @@ color: #0f9d58;
   bottom: 530px;
 }
 
+.game .counter {
+  padding: 20px;
+  font-size: 3em;
+}
+
+.game-circles {
+  position: absolute;
+  left: 45%;
+  top: 20%;
+}
+
 #user-circle{
   border-radius: 50%;
   border: 2px solid black;
