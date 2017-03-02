@@ -42,7 +42,12 @@ function useMic(mic) {
           mic.slow.toFixed(2);
       clipMeter.value = clipValueDisplay.innerText =
           mic.clip;
-    }, 200);
+      var diameter = mic.instant.toFixed(2) * 200;
+      console.log(diameter);
+      // $('#circle').css('width', diameter);
+      // $('#circle').css('height', diameter);
+      $('#circle').width(diameter).height(diameter);
+    }, 1000);
   });
 }
 

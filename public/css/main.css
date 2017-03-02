@@ -42,3 +42,10 @@ color: #0f9d58;
   left: 390px;
   bottom: 530px;
 }
+
+#circle{
+  border-radius: 50%;
+  border: 2px solid black;
+  width: 0;
+  height: 0;
+}
