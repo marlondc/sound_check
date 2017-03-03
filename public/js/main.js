@@ -52,6 +52,7 @@ function useMic(mic) {
 
     listen(mic);
     applyGameRules();
+    resetGame(mic);
 
   });
 }
@@ -73,11 +74,19 @@ function applyGameRules() {
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
       generateComputerCirlce();
+      clearInterval(shortTime);
     } else {
       sound.loudestVolume = 0;
       generateComputerCirlce();
+      clearInterval(shortTime)
     }
   }, 3000)
+}
+
+function resetGame(mic) {
+  setInterval(function() {
+    listen(mic)
+  }, 5000)
 }
 
 function generateComputerCirlce() {
