@@ -16,22 +16,7 @@ body {
   font-size: 3em;
 }
 
-.game-circles {
-  position: absolute;
-  left: 45%;
-  top: 40%;
-}
 
-#computer-circle {
-  border-radius: 50%;
-}
-
-#user-circle{
-  border-radius: 50%;
-  border: 2px solid #02496a;
-  width: 0;
-  height: 0;
-}
 
 .big-circle {
   height: 200px;

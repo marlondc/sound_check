@@ -24,9 +24,9 @@ function Score() {
 }
 
 const circleSizes = {
-  small: {size: 100, color: '#2670b3'},
-  medium: {size: 150, color: '#e91e38'},
-  big: {size: 200, color: '#ff7458'}
+  small: {size: 50, color: '#2670b3'},
+  medium: {size: 75, color: '#e91e38'},
+  big: {size: 100, color: '#ff7458'}
 };
 
 var sound = new UserSound(0);
@@ -62,14 +62,14 @@ function listen(mic) {
     if (mic.instant.toFixed(2) > sound.loudestVolume) {
       sound.loudestVolume = mic.instant.toFixed(2);
     }
-    var diameter = sound.loudestVolume * 320;
-    $('#user-circle').width(diameter).height(diameter);
+    var diameter = sound.loudestVolume * 160;
+    document.getElementById('user-circle').setAttribute("r", diameter);
   }, 100);
 }
 
 function applyGameRules() {
   setInterval(function() {
-    if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
+    if(sound.loudestVolume * 160 >= $('#computer-circle').width()) {
       score.value++;
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
@@ -90,21 +90,22 @@ function resetGame(mic) {
 }
 
 function generateComputerCirlce() {
-  $('#computer-circle').removeClass('small-circle');
-  $('#computer-circle').removeClass('medium-circle');
-  $('#computer-circle').removeClass('big-circle');
   switch(Math.floor(Math.random() * 4)) {
     case 0:
-      $('#computer-circle').addClass('small-circle');
-      break;
-    case 1:
-      $('#computer-circle').addClass('medium-circle');
-      break;
-    case 2:
-      $('#computer-circle').addClass('big-circle');
-      break;
-    default:
-      $('#computer-circle').addClass('small-circle');
+    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
+    //   document.getElementById('computer-circle').css({fill: circleSizes.small.color});
+    //   break;
+    // case 1:
+    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.medium.size);
+    //   document.getElementById('computer-circle').css({fill: circleSizes.medium.color});
+    //   break;
+    // case 2:
+    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.big.size);
+    //   document.getElementById('computer-circle').css({fill: circleSizes.big.color});
+    //   break;
+    // default:
+    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
+    //   document.getElementById('computer-circle').css({fill: circleSizes.small.color});
   }
 }
 
