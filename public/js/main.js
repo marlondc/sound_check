@@ -76,6 +76,7 @@ function useMic(mic) {
       if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
         score.value++;
         sound.loudestVolume = 0;
+        $('#counter').text(score.value);
       }
     }, 1000)
 
