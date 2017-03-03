@@ -33,7 +33,7 @@ var sound = new UserSound(0);
 var score = new Score();
 
 $('#counter').text(score.value);
-generateComputerCirlce()
+generateComputerCircle()
 
 function handleSuccess(stream) {
   // Put variables in global scope to make them available to the
@@ -69,16 +69,14 @@ function listen(mic) {
 
 function applyGameRules() {
   setInterval(function() {
-    if(sound.loudestVolume * 160 >= $('#computer-circle').width()) {
+    if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
       score.value++;
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
-      generateComputerCirlce();
-      clearInterval();
+      generateComputerCircle();
     } else {
       sound.loudestVolume = 0;
-      generateComputerCirlce();
-      clearInterval();
+      generateComputerCircle();
     }
   }, 3000)
 }
@@ -89,7 +87,7 @@ function resetGame(mic) {
   }, 5000)
 }
 
-function generateComputerCirlce() {
+function generateComputerCircle() {
   switch(Math.floor(Math.random() * 4)) {
     case 0:
       document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
