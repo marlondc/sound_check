@@ -63,24 +63,30 @@ function useMic(mic) {
       return;
     }
 
-
-    var shortTime = setInterval(function() {
-      if (mic.instant.toFixed(2) > sound.loudestVolume) {
-        sound.loudestVolume = mic.instant.toFixed(2);
-      }
-      var diameter = sound.loudestVolume * 320;
-      $('#user-circle').width(diameter).height(diameter);
-    }, 100);
-
-    setInterval(function() {
-      if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
-        score.value++;
-        sound.loudestVolume = 0;
-        $('#counter').text(score.value);
-      }
-    }, 1000)
+    listen(mic);
+    applyGameRules();
 
   });
+}
+
+function listen(mic) {
+  var shortTime = setInterval(function() {
+    if (mic.instant.toFixed(2) > sound.loudestVolume) {
+      sound.loudestVolume = mic.instant.toFixed(2);
+    }
+    var diameter = sound.loudestVolume * 320;
+    $('#user-circle').width(diameter).height(diameter);
+  }, 100);
+}
+
+function applyGameRules() {
+  setInterval(function() {
+    if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
+      score.value++;
+      sound.loudestVolume = 0;
+      $('#counter').text(score.value);
+    }
+  }, 1000)
 }
 
 
