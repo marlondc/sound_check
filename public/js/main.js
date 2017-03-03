@@ -74,11 +74,11 @@ function applyGameRules() {
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
       generateComputerCirlce();
-      clearInterval(shortTime);
+      clearInterval();
     } else {
       sound.loudestVolume = 0;
       generateComputerCirlce();
-      clearInterval(shortTime)
+      clearInterval();
     }
   }, 3000)
 }
@@ -92,20 +92,23 @@ function resetGame(mic) {
 function generateComputerCirlce() {
   switch(Math.floor(Math.random() * 4)) {
     case 0:
-    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
-    //   document.getElementById('computer-circle').css({fill: circleSizes.small.color});
-    //   break;
-    // case 1:
-    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.medium.size);
-    //   document.getElementById('computer-circle').css({fill: circleSizes.medium.color});
-    //   break;
-    // case 2:
-    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.big.size);
-    //   document.getElementById('computer-circle').css({fill: circleSizes.big.color});
-    //   break;
-    // default:
-    //   document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
-    //   document.getElementById('computer-circle').css({fill: circleSizes.small.color});
+      document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
+      $('#computer-circle').css({fill: circleSizes.small.color});
+      break;
+    case 1:
+      document.getElementById('computer-circle').setAttribute("r", circleSizes.medium.size);
+      $('#computer-circle').css({fill: circleSizes.medium.color});
+
+      break;
+    case 2:
+      document.getElementById('computer-circle').setAttribute("r", circleSizes.big.size);
+      $('#computer-circle').css({fill: circleSizes.big.color});
+
+      break;
+    default:
+      document.getElementById('computer-circle').setAttribute("r", circleSizes.small.size);
+      $('#computer-circle').css({fill: circleSizes.small.color});
+
   }
 }
 

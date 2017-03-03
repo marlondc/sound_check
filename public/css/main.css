@@ -16,7 +16,13 @@ body {
   font-size: 3em;
 }
 
+#user-circle {
+  z-index: 1;
+}
 
+#computer-circle {
+  z-index: 0;
+}
 
 .big-circle {
   height: 200px;
