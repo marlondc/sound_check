@@ -69,14 +69,13 @@ function listen(mic) {
 
 function applyGameRules() {
   setInterval(function() {
-    if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
+    if(sound.loudestVolume * 320 >= $('#computer-circle').width() || sound.loudestVolume * 320 > 165) {
       score.value++;
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
       generateComputerCircle();
     } else {
       sound.loudestVolume = 0;
-      generateComputerCircle();
     }
   }, 3000)
 }
