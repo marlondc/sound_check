@@ -19,30 +19,33 @@ function UserSound(initialVolume) {
   this.loudestVolume = initialVolume;
 }
 
+function Score() {
+  this.value = 0;
+}
+
 const circleSizes = {
   small: {size: 100, color: '#2670b3'},
   medium: {size: 150, color: '#e91e38'},
   big: {size: 200, color: '#ff7458'}
 };
 
-var score = 0;
 var sound = new UserSound(0);
+var score = new Score();
 
-$('#counter').text(score);
+$('#counter').text(score.value);
+
 switch(Math.floor(Math.random() * 4)) {
   case 0:
-  console.log(1111);
     $('#computer-circle').addClass('small-circle');
     break;
   case 1:
-  console.log(9999);
     $('#computer-circle').addClass('medium-circle');
     break;
   case 2:
-  console.log(3333);
     $('#computer-circle').addClass('big-circle');
     break;
   default:
+    $('#computer-circle').addClass('small-circle');
 }
 
 function handleSuccess(stream) {
@@ -63,11 +66,15 @@ function useMic(mic) {
       if (mic.instant.toFixed(2) > sound.loudestVolume) {
         sound.loudestVolume = mic.instant.toFixed(2);
       }
-      diameter = sound.loudestVolume * 200
-      var diameter = sound.loudestVolume * 200;
+      var diameter = sound.loudestVolume * 320;
       // $('#circle').css('width', diameter);
       // $('#circle').css('height', diameter);
       $('#user-circle').width(diameter).height(diameter);
+      if(diameter >= $('#computer-circle').width()) {
+        stopListening();
+        score.value++;
+        console.log(score.value);
+      }
     }, 100);
   });
 }
