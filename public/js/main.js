@@ -39,10 +39,10 @@ switch(Math.floor(Math.random() * 4)) {
     $('#computer-circle').addClass('small-circle');
     break;
   case 1:
-    $('#computer-circle').addClass('medium-circle');
+    $('#computer-circle').addClass('small-circle');
     break;
   case 2:
-    $('#computer-circle').addClass('big-circle');
+    $('#computer-circle').addClass('small-circle');
     break;
   default:
     $('#computer-circle').addClass('small-circle');
@@ -53,7 +53,7 @@ function handleSuccess(stream) {
   // browser console.
   window.stream = stream;
   var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
-  useMic(soundMeter);
+  playGame(soundMeter)
 }
 
 function useMic(mic) {
@@ -62,20 +62,23 @@ function useMic(mic) {
       alert(e);
       return;
     }
-    setInterval(function() {
+
+
+    var shortTime = setInterval(function() {
       if (mic.instant.toFixed(2) > sound.loudestVolume) {
         sound.loudestVolume = mic.instant.toFixed(2);
       }
       var diameter = sound.loudestVolume * 320;
-      // $('#circle').css('width', diameter);
-      // $('#circle').css('height', diameter);
       $('#user-circle').width(diameter).height(diameter);
-      if(diameter >= $('#computer-circle').width()) {
-        stopListening();
-        score.value++;
-        console.log(score.value);
-      }
     }, 100);
+
+    setInterval(function() {
+      if(sound.loudestVolume * 320 >= $('#computer-circle').width()) {
+        score.value++;
+        sound.loudestVolume = 0;
+      }
+    }, 1000)
+
   });
 }
 
@@ -84,12 +87,17 @@ function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
+function playGame(sound) {
+  console.log(useMic(sound));
+}
+
 function stopListening() {
   soundMeter.stop();
 }
 
 function startListening() {
-  useMic(soundMeter);
+  console.log(useMic(soundMeter));
+
 }
 
 navigator.mediaDevices.getUserMedia(constraints).
