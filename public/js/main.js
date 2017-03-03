@@ -33,20 +33,7 @@ var sound = new UserSound(0);
 var score = new Score();
 
 $('#counter').text(score.value);
-
-switch(Math.floor(Math.random() * 4)) {
-  case 0:
-    $('#computer-circle').addClass('small-circle');
-    break;
-  case 1:
-    $('#computer-circle').addClass('small-circle');
-    break;
-  case 2:
-    $('#computer-circle').addClass('small-circle');
-    break;
-  default:
-    $('#computer-circle').addClass('small-circle');
-}
+generateComputerCirlce()
 
 function handleSuccess(stream) {
   // Put variables in global scope to make them available to the
@@ -85,8 +72,31 @@ function applyGameRules() {
       score.value++;
       sound.loudestVolume = 0;
       $('#counter').text(score.value);
+      generateComputerCirlce();
+    } else {
+      sound.loudestVolume = 0;
+      generateComputerCirlce();
     }
-  }, 1000)
+  }, 3000)
+}
+
+function generateComputerCirlce() {
+  $('#computer-circle').removeClass('small-circle');
+  $('#computer-circle').removeClass('medium-circle');
+  $('#computer-circle').removeClass('big-circle');
+  switch(Math.floor(Math.random() * 4)) {
+    case 0:
+      $('#computer-circle').addClass('small-circle');
+      break;
+    case 1:
+      $('#computer-circle').addClass('medium-circle');
+      break;
+    case 2:
+      $('#computer-circle').addClass('big-circle');
+      break;
+    default:
+      $('#computer-circle').addClass('small-circle');
+  }
 }
 
 
